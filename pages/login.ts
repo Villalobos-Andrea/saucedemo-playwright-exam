@@ -9,12 +9,14 @@ export class LoginPage extends BasePage {
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
+    readonly errorMessage: Locator;
 
     constructor(page: Page) {
         super(page);
         this.usernameInput = page.getByRole('textbox', { name: 'Username' });
         this.passwordInput = page.getByRole('textbox', { name: 'Password' });
         this.loginButton = page.getByRole('button', { name: 'Login' });
+        this.errorMessage = page.locator('[data-test="error"]');
     }
 
     async enterUsername(username: string) {
@@ -25,7 +27,6 @@ export class LoginPage extends BasePage {
         await this.passwordInput.fill(password);
     }
 
-   
     async clickSignInFormButton() {
         await this.loginButton.click();
     }
