@@ -1,4 +1,5 @@
-import { test, expect, loginWithCredentials, TEST_DATA } from '../fixtures';
+import { test, expect } from '../fixtures/page.fixture';
+import { loginAsStandardUser, TEST_DATA } from '../utils/helpers';
 
 /**
  * Shopping cart functionality tests
@@ -8,7 +9,7 @@ import { test, expect, loginWithCredentials, TEST_DATA } from '../fixtures';
 test.describe('Shopping Cart', () => {
     test.beforeEach(async ({ basePage, loginPage }) => {
         await basePage.goto();
-        await loginWithCredentials(loginPage);
+        await loginAsStandardUser(loginPage);
     });
 
     test.describe('Cart Display', () => {

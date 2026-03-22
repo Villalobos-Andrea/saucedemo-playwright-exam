@@ -1,4 +1,5 @@
-import { test, expect, loginWithCredentials, fillCheckoutForm, TEST_DATA } from '../fixtures';
+import { test, expect } from '../fixtures/page.fixture';
+import { loginAsStandardUser, fillCheckoutForm, TEST_DATA } from '../utils/helpers';
 
 /**
  * Checkout process tests
@@ -9,7 +10,7 @@ test.describe('Checkout Process', () => {
     test.beforeEach(async ({ basePage, loginPage, inventoryPage, cartPage }) => {
         // Navigate to home page and login
         await basePage.goto();
-        await loginWithCredentials(loginPage);
+        await loginAsStandardUser(loginPage);
 
         // Add product to cart and navigate to checkout
         await inventoryPage.addBackpackToCart();

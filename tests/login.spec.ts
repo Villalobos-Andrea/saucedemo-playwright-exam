@@ -1,4 +1,5 @@
-import { test, expect, loginWithCredentials, TEST_DATA } from '../fixtures';
+import { test, expect } from '../fixtures/page.fixture';
+import { loginAsStandardUser, TEST_DATA } from '../utils/helpers';
 
 test.describe('Authentication - Login', () => {
     test.beforeEach(async ({ basePage }) => {
@@ -6,7 +7,7 @@ test.describe('Authentication - Login', () => {
     });
 
     test('user can login with valid credentials', async ({ loginPage, inventoryPage }) => {
-        await loginWithCredentials(loginPage);
+        await loginAsStandardUser(loginPage);
 
         // User is redirected to inventory page after successful login
         await expect(inventoryPage.page).toHaveURL(TEST_DATA.expectedUrls.inventory);

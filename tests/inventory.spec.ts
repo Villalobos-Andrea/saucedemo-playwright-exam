@@ -1,10 +1,11 @@
-import { test, expect, loginWithCredentials } from '../fixtures';
+import { test, expect } from '../fixtures/page.fixture';
+import { loginAsStandardUser } from '../utils/helpers';
 
 test.describe('Inventory - Shopping', () => {
     test.beforeEach(async ({ basePage, loginPage }) => {
         // Navigate to home page and login before each test
         await basePage.goto();
-        await loginWithCredentials(loginPage);
+        await loginAsStandardUser(loginPage);
     });
 
     test('add product to cart', async ({ inventoryPage }) => {
