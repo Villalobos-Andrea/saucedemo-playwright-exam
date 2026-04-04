@@ -1,28 +1,21 @@
 import { Page, Locator } from '@playwright/test';
-import { BasePage } from './basepage';
+import { basePage } from './basepage';
 
-/**
- * Inventory Page Object
- * Contains all elements and actions related to the products inventory page
- */
-export class InventoryPage extends BasePage {
-    // Add to cart buttons for each product
+export class InventoryPage extends basePage {
     readonly backpackAddToCartBtn: Locator;
     readonly bikeLightAddToCartBtn: Locator;
     readonly boltTShirtAddToCartBtn: Locator;
-    readonly fleeceJacketAddToCartBtn: Locator;
+    readonly fleeceJacketAddToCartBtn: Locator
     readonly onesieAddToCartBtn: Locator;
-    readonly redTShirtAddToCartBtn: Locator;
+    readonly redTShirtAddToCartBtn: Locator
 
-    // Remove from cart buttons for each product
     readonly backpackRemoveFromCartBtn: Locator;
     readonly bikeLightRemoveFromCartBtn: Locator;
     readonly boltTShirtRemoveFromCartBtn: Locator;
-    readonly fleeceJacketRemoveFromCartBtn: Locator;
+    readonly fleeceJacketRemoveFromCartBtn: Locator
     readonly onesieRemoveFromCartBtn: Locator;
     readonly redTShirtRemoveFromCartBtn: Locator;
 
-    // Product details locators
     readonly backpackName: Locator;
     readonly backpackPrice: Locator;
 
@@ -45,22 +38,19 @@ export class InventoryPage extends BasePage {
         this.onesieRemoveFromCartBtn = page.locator('#remove-sauce-labs-onesie');
         this.redTShirtRemoveFromCartBtn = page.locator('#remove-test.allthethings()-t-shirt-(red)');
 
-        // Product details
         this.backpackName = page.locator('#item_4_title_link .inventory_item_name');
         this.backpackPrice = page.locator('.inventory_item').filter({ hasText: 'Sauce Labs Backpack' }).locator('.inventory_item_price');
+
     }
 
-   
     async addBackpackToCart() {
         await this.backpackAddToCartBtn.click();
     }
 
-   
     async getBackpackName() {
         return await this.backpackName.textContent();
     }
 
-    
     async getBackpackPrice() {
         return await this.backpackPrice.textContent();
     }
@@ -69,7 +59,6 @@ export class InventoryPage extends BasePage {
         await this.bikeLightAddToCartBtn.click();
     }
 
-   
     async addBoltTShirtToCart() {
         await this.boltTShirtAddToCartBtn.click();
     }
@@ -78,7 +67,6 @@ export class InventoryPage extends BasePage {
         await this.fleeceJacketAddToCartBtn.click();
     }
 
-    
     async addOnesieToCart() {
         await this.onesieAddToCartBtn.click();
     }
@@ -86,4 +74,5 @@ export class InventoryPage extends BasePage {
     async addRedTShirtToCart() {
         await this.redTShirtAddToCartBtn.click();
     }
+
 }

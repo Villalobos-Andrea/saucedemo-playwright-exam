@@ -1,40 +1,38 @@
-import { test as base } from '@playwright/test';
-import { BasePage } from '../pages/basepage';
+import { test as base, expect } from '@playwright/test';
+import { basePage } from '../pages/basepage';
 import { LoginPage } from '../pages/login';
 import { InventoryPage } from '../pages/inventory';
-import { CartPage } from '../pages/cart';
-import { CheckoutPage } from '../pages/checkout';
+import { cartPage } from '../pages/cart';
+import { checkoutPage } from '../pages/checkout';
 
-export type PageFixtures = {
-  basePage: BasePage;
-  loginPage: LoginPage;
-  inventoryPage: InventoryPage;
-  cartPage: CartPage;
-  checkoutPage: CheckoutPage;
+type PageFixtures = {
+  home: basePage;
+  login: LoginPage;
+  inventory: InventoryPage;
+  cart: cartPage;
+  checkout: checkoutPage;
 };
 
-export const pageFixtures = {
-  basePage: async ({ page }, use) => {
-    const basePage = new BasePage(page);
-    await use(basePage);
-  },
-  loginPage: async ({ page }, use) => {
+export const test = base.extend<PageFixtures>({
+  home: async ({ page }, use) => {
+    await use(new basePage(page));
+},
+
+  login: async ({ page }, use) => {
     await use(new LoginPage(page));
   },
-  inventoryPage: async ({ page }, use) => {
+
+  inventory: async ({ page }, use) => {
     await use(new InventoryPage(page));
   },
-  cartPage: async ({ page }, use) => {
-    await use(new CartPage(page));
-  },
-  checkoutPage: async ({ page }, use) => {
-    await use(new CheckoutPage(page));
-  },
-};
 
-/**
- * Main test fixture with all page object fixtures
- */
-export const test = base.extend<PageFixtures>(pageFixtures);
+  cart: async ({ page }, use) => {
+    await use(new cartPage(page));
+  },
 
-export { expect } from '@playwright/test';
+  checkout: async ({ page }, use) => {
+    await use(new checkoutPage(page));
+  },
+});
+
+export { expect };

@@ -1,13 +1,10 @@
 import { Page, Locator } from '@playwright/test';
 
-/**
- * Base Page Object
- * Contains common elements and functionality shared across all pages
- */
-export class BasePage {
+export class basePage {
     readonly page: Page;
     readonly shoppingCartLink: Locator;
     readonly shoppingCartBadge: Locator;
+
 
     constructor(page: Page) {
         this.page = page;
@@ -15,17 +12,15 @@ export class BasePage {
         this.shoppingCartBadge = page.locator('[data-test="shopping-cart-badge"]');
     }
 
-  
+    // Go to base page
     async goto() {
         await this.page.goto('https://www.saucedemo.com/');
     }
-
 
     async clickOnShoppingCart() {
         await this.shoppingCartLink.click();
     }
 
-   
     async getShoppingCartBadgeText() {
         return await this.shoppingCartBadge.textContent();
     }
@@ -33,5 +28,6 @@ export class BasePage {
     async isShoppingCartBadgeVisible() {
         return await this.shoppingCartBadge.isVisible();
     }
+
 }
 

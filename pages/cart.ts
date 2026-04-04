@@ -1,11 +1,9 @@
 import { Page, Locator } from '@playwright/test';
-import { BasePage } from './basepage';
+import { basePage } from './basepage';
 
-/**
- * Cart Page Object
- * Contains all elements and actions related to the shopping cart page
- */
-export class CartPage extends BasePage {
+
+export class cartPage extends basePage {
+
     readonly checkoutBtn: Locator;
     readonly continueShoppingBtn: Locator;
     readonly cartItem: Locator;
@@ -19,18 +17,16 @@ export class CartPage extends BasePage {
         this.removeBtn = page.locator('.cart_item').getByRole('button', { name: 'Remove' });
     }
 
-   
     async clickCheckoutButton() {
         await this.checkoutBtn.click();
     }
 
-  
     async clickContinueShoppingButton() {
         await this.continueShoppingBtn.click();
     }
 
-   
     async clickRemoveButton() {
         await this.removeBtn.click();
     }
+
 }
